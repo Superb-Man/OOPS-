@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+
+class Polygon {
+protected:
+    int width, height;
+public:
+    Polygon (int a, int b) : width(a), height(b) {}
+};
+
+class Out {
+public:
+    static void print (int i){  cout << i << '\n'; }
+};
+
+class Rectangle: public Polygon, public Out {
+public:
+    Rectangle (int a, int b) : Polygon(a,b) {}
+    int area () { return width*height; }
+};
+
+class Triangle: public Polygon, public Out {
+public:
+    Triangle (int a, int b) : Polygon(a,b) {}
+    int area (){ return width*height/2; }
+};
+  
+int main () {
+  Rectangle rect (4,5);
+  Triangle trl (4,5);
+  rect.print (rect.area());
+  Triangle::print (trl.area());
+  return 0;
+}
